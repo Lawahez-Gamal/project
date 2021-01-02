@@ -1,0 +1,45 @@
+<app-navbar></app-navbar>
+<form [formGroup]="userModel" (ngSubmit)="onSubmitRegister()">
+    
+    <div class="input-container">
+      <i class="fa fa-user icon"></i>
+      <input type="text" formControlName="firstname">
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-user icon"></i>
+      <input type="text" formControlName="lastname">
+    </div>
+  
+    <div class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input type="text" formControlName="email">
+    </div>
+  
+    <div class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input type="text" formControlName="password">
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input type="text" formControlName="re_password">
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-phone icon"></i>
+      <input type="text" formControlName="phone">
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-gender icon"></i>
+    <input type="text" formControlName="gender">
+    </div>
+  
+    <button type="submit" class="btn">Register</button>
+
+    <div class="input-container">
+        <p>Already have an account? <a href="#">Sign in</a>.</p>
+      </div>
+  </form>
+  <app-footer></app-footer>
