@@ -1,19 +1,19 @@
 <app-navbar></app-navbar>
 
-<form #login="ngForm" (ngSubmit)="login.form.valid && onLoginSubmit()">
+<form #userModel="ngForm" (ngSubmit)="userModel.form.valid && onLoginSubmit()">
     <input 
     name="email" 
     email required 
     placeholder="Email" 
     [(ngModel)]="userModal.email"
     #email="ngModel"
-    [ngClass]=" { 'invalid-data' : (login.submitted && email.invalid) }"
+    [ngClass]=" { 'invalid-data' : (userModel.submitted && email.invalid) }"
     >
-    <div *ngIf="login.submitted && email.invalid">
-        <div *ngIf="email.errors.required">
+    <div *ngIf="userModel.submitted && email.invalid">
+        <div *ngIf="email.errors?.required">
             required email
         </div>
-        <div *ngIf="email.errors.email">
+        <div *ngIf="email.errors?.email">
             invalid email
         </div>
     </div>
@@ -24,20 +24,27 @@
     type="password" 
     [(ngModel)]="userModal.password"
     #password = "ngModel"
-    [ngClass]=" { 'invalid-data' : (login.submitted && password.invalid) }"
+    [ngClass]=" { 'invalid-data' : (userModel.submitted && password.invalid) }"
     >
-    <div *ngIf="login.submitted && password.invalid">
-        <div *ngIf="password.errors.required">
+    <div *ngIf="userModel.submitted && password.invalid">
+        <div *ngIf="password.errors?.required">
             required password
         </div>
-        <div *ngIf="password.errors.minlength">
+        <div *ngIf="password.errors?.minlength">
             must be more than 6
         </div>
     </div>
+    <br>
+    <input 
+    required 
+    type="file" 
+    [(ngModel)]="userModal.image"
+    (change="imageUpload($event")
+    >
 
     <br>
     <button>login</button>
-<div *ngIf="(login.submitted&&loginflag); else logged">
+<div *ngIf="(userModel.submitted&&loginflag); else logged">
 invalid data
 </div>
 <ng-template #logged>

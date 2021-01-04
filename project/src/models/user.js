@@ -50,17 +50,22 @@ const userSchema = new mongoose.Schema({
     ],
     role : {
         type: Number,
-        default: 1,
+        default: 0,
         required: true
     
     },
     pimg:{
         type:String
     },
-    gender:{
-        type:Boolean,
-        required:true
+    phone:{
+        type:String,
+        minLength:11
     }
+    // ,
+    // gender:{
+    //     type:Boolean,
+    //     required:true
+    // }
   
 }, 
 {timestamps: true}
@@ -95,16 +100,13 @@ userSchema.pre('save',async function(next){
 //     next()
 // })
 
-userSchema.statics.findByCredentials = async (email, password, role)=>{
-    
-    const user= await User.findOne({ email })
-
-    if(!user) throw new Error('unauthorized')
-    if(user.role != role) throw new Error("Unable to login")
-    
-    const matched = await bcrypt.compare(password, user.password)
-    if(!matched) throw new Error('unauthorized')
-    return user    
+userSchema.statics.findByCredentials = async(email, password, role) => {
+    const user = await User.findOne({email})
+    if(!user) throw new Error('unable login')
+    if(user.role!= role) throw new Error('unable login')
+    const isMatch = bcrypt.compare(password, user.password)
+    if(!isMatch) throw new Error('unable login')
+    return user
 }
 
 userSchema.methods.generateToken = async function (){

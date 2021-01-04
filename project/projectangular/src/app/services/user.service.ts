@@ -7,28 +7,29 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-
-defaultURL ="https://backtest.achilleseg.com/api"
-public imgURL = "https://backtest.achilleseg.com/"
+defaultURL ="http://localhost:3000/"
+public imgURL = "http://localhost:3000/"
 lang: string ='en'
+  islogged: any;
+
   constructor(private _http:HttpClient) {
    
     this.lang = localStorage.getItem('currentLanguage') || "1"
    }
 
    signUp(obj:any):Observable<any>{
-    return this._http.post(`${this.defaultURL}/auth/signup`,obj)
+    return this._http.post(`${this.defaultURL}Registeruser`,obj)
    }
 
    signIn(obj:any):Observable<any>{
-    return this._http.post(`${this.defaultURL}/auth/loginApi`,obj)
+    return this._http.post(`${this.defaultURL}/loginuser`,obj)
    }
 
    authMe():Observable<any>{
-    return this._http.post(`${this.defaultURL}/auth/me`,null)
+    return this._http.post(`${this.defaultURL}/users/me`,null)
    }
 
    logOut():Observable<any>{
-    return this._http.get(`${this.defaultURL}/auth/logout_api`)
+    return this._http.get(`${this.defaultURL}/logoutuser`)
    }
 }

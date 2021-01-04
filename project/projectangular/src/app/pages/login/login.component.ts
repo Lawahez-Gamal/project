@@ -11,8 +11,12 @@ export class LoginComponent implements OnInit {
   userModal = {
     email:"",
     password:"",
+    image:"",
     type: 0
   }
+
+ myImg:File | undefined
+
   loginflag = true
   constructor(private _user:UserService) { }
 
@@ -28,4 +32,8 @@ export class LoginComponent implements OnInit {
   })
 }
 
+
+imageUpload(e:any){
+  this.myImg = e.target.files[0]
+}
 }

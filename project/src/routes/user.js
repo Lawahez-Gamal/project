@@ -37,25 +37,21 @@ router.post('/Registeruser', async(req, res) => {
 
 router.post('/loginuser', async(req,res)=>{
     try{
-        
         const role = req.body.role
         if(!role) {throw new Error('add user role')}
-        const user = await User.findByCredentials(req.body.email, req.body.password,req.body.role)
-
+        const user = await User.findByCredentials(req.body.email, req.body.password, req.body.role)
         const token = await user.generateToken()
         res.send({
-            status:1,
-            data:user,
-            msg:"logged in",
-            token :{token,token_type:'Bearer '}
+            status: 1,
+            data: {user, token, token_type:'Bearer '},
+            message: " user logged in"
         })
     }
     catch(e){
-        res.status(500).send({
-            status:0,
-            data:e,
-            msg:"err in data",
-            token:""
+        res.status(200).send({
+            status: 0,
+            data: e,
+            message: "Unauthorized user"
         })
     }
 })
@@ -66,14 +62,14 @@ var storage = multer.diskStorage({
       cb(null, 'images')
     },
     filename: function (req, file, cb) {
-        console.log(Date.now() + file.originalname.match(/\.(jpg|png)$/)[0]);
+        // console.log(Date.now() + file.originalname.match(/\.(jpg|png)$/)[0]);
         uniqueSuffix = Date.now() + file.originalname.match(/\.(jpg|png)$/)[0]
       cb(null, file.fieldname + '-' + uniqueSuffix)
     }
   })
   
   var upload = multer({ storage: storage })
-  console.log(upload);
+//   console.log(upload);
 router.post('/me/uploadImg',auth , upload.single('upload'), async(req,res)=>{
     
     console.log(uniqueSuffix);
@@ -155,7 +151,7 @@ router.patch('/user/:id',auth, async(req,res)=>{
     }
 })
 
-router.post('/logout', async(req,res)=>{
+router.post('/logoutuser', async(req,res)=>{
     try{
         req.user.tokens = req.user.tokens.filter( token =>{
             return token.token != req.token

@@ -1,45 +1,55 @@
 <app-navbar></app-navbar>
-<form [formGroup]="userModel" (ngSubmit)="onSubmitRegister()">
-    
-    <div class="input-container">
-      <i class="fa fa-user icon"></i>
-      <input type="text" formControlName="firstname">
-    </div>
+<section class="container">
+  <div class="row">
 
-    <div class="input-container">
-      <i class="fa fa-user icon"></i>
-      <input type="text" formControlName="lastname">
-    </div>
-  
-    <div class="input-container">
-      <i class="fa fa-envelope icon"></i>
-      <input type="text" formControlName="email">
-    </div>
-  
-    <div class="input-container">
-      <i class="fa fa-key icon"></i>
-      <input type="text" formControlName="password">
-    </div>
-
-    <div class="input-container">
-      <i class="fa fa-key icon"></i>
-      <input type="text" formControlName="re_password">
-    </div>
-
-    <div class="input-container">
-      <i class="fa fa-phone icon"></i>
-      <input type="text" formControlName="phone">
-    </div>
-
-    <div class="input-container">
-      <i class="fa fa-gender icon"></i>
-    <input type="text" formControlName="gender">
-    </div>
-  
-    <button type="submit" class="btn">Register</button>
-
-    <div class="input-container">
-        <p>Already have an account? <a href="#">Sign in</a>.</p>
+    <form [formGroup]="userModel" (ngSubmit)="onSubmitRegister()">
+      <div class="mb-3">
+        <label for="exampleInputname" class="form-label">User Name</label>
+        <input type="text" class="form-control"  placeholder="Name" formControlName="userName" ngModel>
       </div>
-  </form>
+
+      <div class="mb-3">
+        <label for="exampleInputname" class="form-label">Nick Name</label>
+        <input type="text" class="form-control"  placeholder="LName" formControlName="name" ngModel>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputEmail1" class="form-label">Email address</label>
+        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" formControlName="email" ngModel>
+        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+      </div>
+      <div class="mb-3">
+        <label for="exampleInputPassword1" class="form-label">Password</label>
+        <input type="password" class="form-control" placeholder="Password" formControlName="password" ngModel>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputPassword1">Confirm Password</label>
+        <input type="password" class="form-control" placeholder="re_Password" formControlName="re_password" ngModel>
+      </div>
+
+      <div class="mb-3">
+        <label for="exampleInputname">Phone</label>
+        <input type="text" class="form-control"  placeholder="phone" formControlName="phone" ngModel>
+      </div>
+
+      <!-- <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+        <label class="form-check-label" for="flexRadioDefault1" formControlName="gender" value=1>
+          Male
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="flexRadioDefault2" formControlName="gender" value=0>
+          Female
+        </label>
+      </div> -->
+     
+      <button type="submit" class="btn btn-primary">Register</button>
+      <p>Already have an account? <a href="#">Sign in</a>.</p>
+    </form>
+
+</div>
+</section>
   <app-footer></app-footer>

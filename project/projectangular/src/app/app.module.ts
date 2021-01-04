@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { TooltipModule } from 'ngx-bootstrap/tooltip';
+// import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { UserComponent } from './pages/user/user.component';
@@ -13,7 +13,9 @@ import { RegisterComponent } from './pages/register/register.component';
 import { UserService } from './services/user.service';
 import { UserInterceptor } from './user.interceptor';
 import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule,FormBuilder,
+  FormGroup } from '@angular/forms';
+import { BooksComponent } from './pages/books/books.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FooterComponent,
     LoginComponent,
     CommentsComponent,
-    RegisterComponent
+    RegisterComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,
@@ -32,7 +35,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    TooltipModule.forRoot()
+    // TooltipModule.forRoot()
   ],
   providers: [
     UserService,{
