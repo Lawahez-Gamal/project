@@ -1,0 +1,22 @@
+<app-navbar></app-navbar>
+<section class="container">
+
+<p>single works</p>
+
+<div class="card">
+  
+    <img [src]="image" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">Book title : 
+        {{bookData.title}}</h5>
+
+      <p class="card-text">Author Name : 
+        {{bookData.authorName}}</p>
+      <p class="card-text">Description : 
+        {{bookData.description}}</p>
+      <span>{{bookData.rate}}</span>
+    </div>
+  </div>
+
+</section>
+<app-footer></app-footer>

@@ -10,6 +10,10 @@ const adminRoutes = require('./routes/admin')
 
 const writerRoutes = require('./routes/writer')
 
+const bookRoutes = require('./routes/book')
+
+const commentRoutes = require('./routes/comments')
+
 const app = express()
 
 const port = process.env.PORT || 3000
@@ -23,6 +27,10 @@ app.use(userRoutes)
 app.use(adminRoutes)
 
 app.use(writerRoutes)
+
+app.use(bookRoutes)
+
+app.use(commentRoutes)
 
 app.listen(port,()=>{
     console.log(`server up on localhost:${port}`);

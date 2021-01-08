@@ -1,6 +1,6 @@
 const express = require('express')
 const User  = require('../models/user')
-const Book  = require('../models/book')
+
 const {authAdmin , auth} = require('../middleware/author')
 const router  = new express.Router()
 
@@ -64,7 +64,7 @@ router.get('/allWriters',async (req,res)=>{
         res.status(500).send({
             status:0,
             data: e,
-            msg: 'error loading doctors data'
+            msg: 'error loading data'
         })
     }
 })
@@ -202,108 +202,6 @@ router.delete('/logoutwriter/:id', async(req,res)=>{
         })
     }
 })
-
-
-
-//Book Router
-router.post('/Addbook',authAdmin('Admin'),auth, async(req, res) => {
-    try{
-    const book = new Book(req.body)
-
-        await book.save()
-      
-            res.status(200).send({
-            status:1,
-            data: book,
-            msg: 'Book uploaded succesfully',
-        })
-    }
-    catch(e){
-       res.status(500).send({
-            status:0,
-            data:e,
-            msg:'error inserting data',
-        })
-    }
-})
-
-router.delete('/Deletebook/:id', async(req,res)=>{
-    const _id= req.params.id
-    try{
-        const book = await Book.findByIdAndDelete(_id)
-        if(!book){
-            res.status(200).send({
-                status:2,
-                data:"",
-                msg:"book not found"
-            })
-        }
-        res.status(200).send({
-            status:1,
-            data: book, 
-            msg:"your book has been deleted successfuly"
-        })
-    }
-    catch(e){
-        res.status(500).send({
-            statue: 0,
-            data:'',
-            msg:"Error deleting data"
-        })
-    }
-})
-
-
-router.patch('/Editbook/:id', async(req,res)=>{
-    const _id            = req.params.id
-    const updates        = req.body
-
-    try{
-        const book = await Book.findByIdAndUpdate(_id, updates,{
-            new:true,
-            runValidators:true
-        })
-        if(!book){
-            res.status(200).send({
-                status:2,
-                data:"",
-                msg:"book not found"
-            })
-        }
-        res.status(200).send({
-            status:1,
-            data: book, 
-            msg:"book data retreived successfuly"
-        })
-    }
-    catch(e){
-        res.status(500).send({
-            statue: 0,
-            data:'',
-            msg:"Error occurs while editing book"
-        })
-    }
-})
-
-router.get('/allBooks',async (req,res)=>{
-    try{
-        const books = await Book.find({})
-        res.status(200).send({
-            status:1,
-            data: books,
-            msg: 'All Books selected',
-            me : req.data
-        })
-    }
-    catch(e){
-        res.status(500).send({
-            status:0,
-            data: e,
-            msg: 'error loading Books data'
-        })
-    }
-})
-
 
 
 module.exports=router

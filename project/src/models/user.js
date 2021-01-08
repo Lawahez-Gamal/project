@@ -61,22 +61,17 @@ const userSchema = new mongoose.Schema({
         type:String,
         minLength:11
     }
-    // ,
-    // gender:{
-    //     type:Boolean,
-    //     required:true
-    // }
   
 }, 
 {timestamps: true}
 )
 
 userSchema.virtual('Comments',{
-    ref:'Comments', localField:'_id', foreignField:'user_id'
+    ref:'Comments', localField:'_id', foreignField:'owner'
 })
 
 userSchema.virtual('Book',{
-    ref:'Book', localField:'_id', foreignField:'userId'
+    ref:'Book', localField:'_id', foreignField:'bookowner'
 })
 
 userSchema.methods.toJSON = function(){
@@ -102,9 +97,9 @@ userSchema.pre('save',async function(next){
 
 userSchema.statics.findByCredentials = async(email, password, role) => {
     const user = await User.findOne({email})
-    if(!user) throw new Error('unable login')
-    if(user.role!= role) throw new Error('unable login')
-    const isMatch = bcrypt.compare(password, user.password)
+    if(!user) {throw new Error('unable login')}
+    if(user.role!= role) {throw new Error('unable login')}
+    const isMatch =await bcrypt.compare(password, user.password)
     if(!isMatch) throw new Error('unable login')
     return user
 }

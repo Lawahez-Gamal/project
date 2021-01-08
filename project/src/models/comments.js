@@ -1,16 +1,12 @@
-const validator = require('validator')
 const mongoose = require('mongoose')
-const bcrypt    = require('bcryptjs')
-const jwt       = require('jsonwebtoken')
-
 
 const commentSchema = new mongoose.Schema({
-    user_id:{
+    owner:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'User'
     },  
-    book_id:{
+    forbook:{
         type:mongoose.Schema.Types.ObjectId,
         required:true,
         ref:'Book'
@@ -26,8 +22,6 @@ const commentSchema = new mongoose.Schema({
 }, 
 {timestamps: true}
 )
-
-
 
 const Comments = mongoose.model('Comments', commentSchema)
 

@@ -16,6 +16,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule,FormBuilder,
   FormGroup } from '@angular/forms';
 import { BooksComponent } from './pages/books/books.component';
+import { SingleBookComponent } from './pages/single-book/single-book.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { BooksComponent } from './pages/books/books.component';
     LoginComponent,
     CommentsComponent,
     RegisterComponent,
-    BooksComponent
+    BooksComponent,
+    SingleBookComponent
   ],
   imports: [
     BrowserModule,

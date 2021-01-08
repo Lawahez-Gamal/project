@@ -25,7 +25,11 @@ const bookSchema = new mongoose.Schema({
     type:Date
    },
    rate: { type: Number, default: 5 },
-   userId:{
+   bookimg:{
+    type:String,
+    required:true
+   },
+   bookowner:{
     type:mongoose.Schema.Types.ObjectId,
     required:true,
     ref:'User'
@@ -34,9 +38,9 @@ const bookSchema = new mongoose.Schema({
 {timestamps: true}
 )
 
-// bookSchema.virtual('Comments',{
-//     ref:'Comments', localField:'_id', foreignField:'bookId'
-// })
+bookSchema.virtual('Comments',{
+    ref:'Comments', localField:'_id', foreignField:'forbook'
+})
 
 
 const Book = mongoose.model('Book', bookSchema)

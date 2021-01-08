@@ -23,7 +23,7 @@ catch(e){
     res.status(500).send({
        status:0,
        msg:"You need to login first",
-       data:"" 
+       data:e
     })
 }
 
@@ -33,9 +33,7 @@ catch(e){
 function authAdmin(role){
         return(req,res,next)=>{
         
-            req.role = role['Admin'] 
-            console.log(req.role)
-        if (role !== role){return res.status(500).send("Not allowed")}        
+        if (role !== 1){return res.status(500).send("Not allowed")}        
         next()   
             
         } 
