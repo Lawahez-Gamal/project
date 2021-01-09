@@ -10,7 +10,8 @@
 </head>
 <body>
 <section class="container">
-<form #userModel="ngForm" (ngSubmit)="userModel.form.valid && onLoginSubmit()">
+    <div class="checklist">
+<form #userModel="ngForm" (ngSubmit)="userModel.form.valid && onLoginSubmit()" >
     <input name="email" email required placeholder="Email" [(ngModel)]="userModal.email" #email="ngModel" class="form-control">
     <div *ngIf="userModel.submitted && email.invalid">
         <div *ngIf="email.errors?.required">
@@ -20,7 +21,7 @@
             invalid email
         </div>
     </div>
-    <br>
+
     <input name="password" required minlength="6" type="password" [(ngModel)]="userModal.password" #password = "ngModel" class="form-control">
     <div *ngIf="userModel.submitted && password.invalid">
         <div *ngIf="password.errors?.required">
@@ -30,19 +31,26 @@
             must be more than 6
         </div>
     </div>
-    <br>
-    <input required type="file" [(ngModel)]="userModal.image" (change)="imageUpload($event)" class="form-control"> 
+ 
+    <input required type="file" [(ngModel)]="userModal.image" class="form-control"> 
 
-    <br>
-    <button type="submit" class="btn btn-primary" (click)="onUpload()">login</button>
+    <select class="form-select form-select-sm" aria-label=".form-select-sm example" [(ngModel)]="userModal.role">
+        <option selected>Please select role</option>
+        <option value="0">User</option>
+        <option value="1">Admin</option>
+        <option value="2">Writer</option>
+      </select>
+ 
+    <button type="submit" class="btn btn-primary">login</button>
 <div *ngIf="(userModel.submitted&&loginflag); else logged" class="form-control">
 invalid data
 </div>
 <ng-template #logged>
     logged in
 </ng-template>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+
 </form>
+</div>
 </section>
 </body>
 </html>

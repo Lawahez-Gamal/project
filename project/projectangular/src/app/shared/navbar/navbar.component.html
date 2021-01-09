@@ -13,14 +13,14 @@
           <a class="nav-link" routerLink="/login" href="#">Log in</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/allBooks" href="#">Books</a>
+          <a class="nav-link" href="#" routerLink="/register">Sign up</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#" routerLink="/register">Sign up</a>
+          <a class="nav-link" routerLink="/allWriters" href="#">All Writers</a>
         </li>
       </ul>
       <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"  (input)="filterbooks($event)">
         <button class="btn btn-danger" type="submit">Search</button>
       </form>
     </div>

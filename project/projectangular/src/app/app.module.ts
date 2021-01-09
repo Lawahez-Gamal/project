@@ -17,6 +17,7 @@ import { FormsModule, ReactiveFormsModule,FormBuilder,
   FormGroup } from '@angular/forms';
 import { BooksComponent } from './pages/books/books.component';
 import { SingleBookComponent } from './pages/single-book/single-book.component';
+import { SingleuserComponent } from './pages/singleuser/singleuser.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SingleBookComponent } from './pages/single-book/single-book.component';
     CommentsComponent,
     RegisterComponent,
     BooksComponent,
-    SingleBookComponent
+    SingleBookComponent,
+    SingleuserComponent
   ],
   imports: [
     BrowserModule,

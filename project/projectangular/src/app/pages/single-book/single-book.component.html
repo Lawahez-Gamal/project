@@ -1,23 +1,27 @@
 <app-navbar></app-navbar>
 <section class="container">
 
-<p>single works</p>
-
-<div class="card" >
-  <!-- <div *ngIf=retrievedImage> -->
-    <img src="getImage()" class="card-img-top" alt="...">
-  <!-- </div> -->
-    <div class="card-body">
-      <h5 class="card-title">Book title : 
+<div class="card mb-3" style="max-width: 540px;">
+  <div class="row g-0">
+   
+  <div class="col-md-8">
+    <div class="card-body" style="text-align: right;">
+      <h5 class="card-title"> 
         {{bookData.title}}</h5>
 
-      <p class="card-text">Author Name : 
+      <p class="card-text">اسم الكاتب : 
         {{bookData.authorName}}</p>
-      <p class="card-text">Description : 
+      <p class="card-text">الوصف : 
         {{bookData.description}}</p>
-      <span>{{bookData.rate}}</span>
     </div>
   </div>
+  <div class="col-md-4">
+    <img [src]="ImageURL + bookData.bookimg" class="card-img-top my-5" alt="..." >
+  </div>
+</div>
+</div>
+<button type="button" class="btn btn-dark m-5" (click)="downlondBook()">Download</button>
 
+<button type="button" class="btn btn-info m-5" >Comment</button>
 </section>
 <app-footer></app-footer>

@@ -18,6 +18,9 @@ MAINURL= "http://localhost:3000/"
      return this._http.get(`${this.MAINURL}singleBook/${id}`)
   }
 
+  // getData() {
+  //   return this._http.get('/assets/bookimage/upload-1609964295848.jpg');
+  // }
   // getFiles(url: string): Observable<any> {
   //   return this._http.get(url); // 'http://localhost:8080/api/file/all' anykind
   // }

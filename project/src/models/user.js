@@ -60,6 +60,10 @@ const userSchema = new mongoose.Schema({
     phone:{
         type:String,
         minLength:11
+    },
+    user_description:{
+        type:String,
+        default:""
     }
   
 }, 

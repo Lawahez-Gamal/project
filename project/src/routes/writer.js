@@ -51,7 +51,10 @@ router.post('/login', async(req,res)=>{
 
 
 router.get('/allWriters',async (req,res)=>{
+    // role = req.user.role
     try{
+        
+        // const writers = await User.find({role})
         const writers = await User.find({})
         res.status(200).send({
             status:1,
@@ -69,7 +72,7 @@ router.get('/allWriters',async (req,res)=>{
     }
 })
 
-router.get('/profile',async(req,res)=>{
+router.get('/profile',auth,async(req,res)=>{
     try{
         res.send({
             data : req.data,
@@ -85,7 +88,7 @@ router.get('/profile',async(req,res)=>{
 }
 })
 
-router.get('/writer/:id', async(req,res)=>{
+router.get('/singleWriter/:id', async(req,res)=>{
     const _id = req.params.id
     try{
         const writer = await User.findById(_id)
@@ -98,7 +101,7 @@ router.get('/writer/:id', async(req,res)=>{
         }
         res.status(200).send({
             status:1,
-            data: doc, 
+            data: writer, 
             msg:"writer data retreived successfuly"
         })
     }
@@ -111,7 +114,7 @@ router.get('/writer/:id', async(req,res)=>{
     }
 })
 
-router.patch('/writer/:id', async(req,res)=>{
+router.patch('/writer/:id',auth, async(req,res)=>{
     const _id= req.params.id
     const updates = req.body
     const updatesKeys = Object.keys(req.body)
@@ -150,7 +153,7 @@ router.patch('/writer/:id', async(req,res)=>{
     }
 })
 
-router.delete('/writer/:id', async(req,res)=>{
+router.delete('/writer/:id',auth, async(req,res)=>{
     const _id= req.params.id
     try{
         const writer = await User.findByIdAndDelete(_id)
@@ -177,7 +180,7 @@ router.delete('/writer/:id', async(req,res)=>{
 })
 
 
-router.delete('/logoutwriter/:id', async(req,res)=>{
+router.delete('/logoutwriter/:id',auth, async(req,res)=>{
     const _id= req.params.id
     try{
         const writer = await User.findByIdAndDelete(_id)
@@ -190,7 +193,7 @@ router.delete('/logoutwriter/:id', async(req,res)=>{
         }
         res.status(200).send({
             status:1,
-            data: doc, 
+            data:writer, 
             msg:"you're unsuscribe successfuly"
         })
     }

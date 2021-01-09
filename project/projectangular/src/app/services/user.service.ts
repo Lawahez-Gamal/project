@@ -18,7 +18,7 @@ lang: string ='en'
    }
 
    signUp(obj:any):Observable<any>{
-    return this._http.post(`${this.defaultURL}Registeruser`,obj)
+    return this._http.post(`${this.defaultURL}/Registeruser`,obj)
    }
 
    signIn(obj:any):Observable<any>{
@@ -31,5 +31,13 @@ lang: string ='en'
 
    logOut():Observable<any>{
     return this._http.get(`${this.defaultURL}/logoutuser`)
+   }
+
+   showAllUsers():Observable<any>{
+    return this._http.get(`${this.defaultURL}/allWriters`)
+   }
+ 
+   showSingleUser(id:any):Observable<any>{
+      return this._http.get(`${this.defaultURL}/singleWriter/${id}`)
    }
 }

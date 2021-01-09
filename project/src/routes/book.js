@@ -26,7 +26,7 @@ router.post('/Addbook',auth,authAdmin(1), async(req, res) => {
     }
 })
 
-router.delete('/Deletebook/:id', async(req,res)=>{
+router.delete('/Deletebook/:id',auth,authAdmin(1), async(req,res)=>{
     const _id= req.params.id
     try{
         const book = await Book.findByIdAndDelete(_id)
@@ -53,7 +53,7 @@ router.delete('/Deletebook/:id', async(req,res)=>{
 })
 
 
-router.patch('/Editbook/:id', async(req,res)=>{
+router.patch('/Editbook/:id',auth, async(req,res)=>{
     const _id            = req.params.id
     const updates        = req.body
 
@@ -139,7 +139,7 @@ var storage = multer.diskStorage({
     },
     filename: function (req, file, cb) {
         // console.log(Date.now() + file.originalname.match(/\.(jpg|png)$/)[0]);
-        uniqueSuffix = Date.now() + file.originalname.match(/\.(pdf)$/)[0]
+        uniqueSuffix = Date.now() + file.originalname.match(/\.(jpg)$/)[0]
       cb(null, file.fieldname + '-' + uniqueSuffix)
     }
   })

@@ -24,7 +24,6 @@ const bookSchema = new mongoose.Schema({
    publishAt:{
     type:Date
    },
-   rate: { type: Number, default: 5 },
    bookimg:{
     type:String,
     required:true

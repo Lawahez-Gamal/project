@@ -7,8 +7,21 @@ import { BooksService } from 'src/app/services/books.service';
   styleUrls: ['./books.component.css']
 })
 export class BooksComponent implements OnInit {
-
+ 
+public ImgURL ="./././assets/"
   allData: any;
+    //  filtered = this.allData
+    //  val = ""
+    
+    //  filterbooks(val:any){
+    //    let key = val.target.value
+   
+    //    this.allData.filter((el:any)=>{
+   
+    //      return el.title.includes(key)
+   
+    //    })
+    //  }
   constructor(private _book:BooksService) { }
 
   ngOnInit(): void {
@@ -20,7 +33,9 @@ export class BooksComponent implements OnInit {
     }
     )
 
-    
+ 
   }
+
+ 
 
 }
