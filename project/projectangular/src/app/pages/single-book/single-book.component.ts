@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router'
 import { BooksService } from 'src/app/services/books.service';
@@ -10,9 +11,14 @@ export class SingleBookComponent implements OnInit {
 bookData:any
 // public ImageURL = ""
 
-image:any
-  constructor(private _book:BooksService, private route:ActivatedRoute) {
-    this.image = '../bookimage/download.jpg'
+imgName:any
+retrievedImage: any;
+base64Data: any;
+retrieveResonse: any;
+imageName: any
+
+  constructor(private _book:BooksService, private route:ActivatedRoute,private _http:HttpClient) {
+    // this.image = '../bookimage/download.jpg'
    }
 
   ngOnInit(): void {
@@ -27,4 +33,17 @@ image:any
   //       this.image = image;
   //     });
   //   }
+
+
+  getImage() {
+    //Make a call to Sprinf Boot to get the Image Bytes.
+    this._http.get('http://localhost:3000/get/' + this.imageName)
+      .subscribe(
+        res => {
+          this.retrieveResonse = res;
+          this.base64Data = this.retrieveResonse.picByte;
+          this.retrievedImage = 'data:image/jpeg;base64,' + this.base64Data;
+        }
+      );
+  }
 }

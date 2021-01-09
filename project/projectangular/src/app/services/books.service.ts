@@ -17,4 +17,8 @@ MAINURL= "http://localhost:3000/"
   showSingleBook(id:any):Observable<any>{
      return this._http.get(`${this.MAINURL}singleBook/${id}`)
   }
+
+  // getFiles(url: string): Observable<any> {
+  //   return this._http.get(url); // 'http://localhost:8080/api/file/all' anykind
+  // }
 }

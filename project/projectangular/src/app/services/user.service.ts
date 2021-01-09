@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 })
 export class UserService {
 
-defaultURL ="http://localhost:3000/"
+defaultURL ="http://localhost:3000"
 public imgURL = "http://localhost:3000/"
 lang: string ='en'
   islogged: any;
